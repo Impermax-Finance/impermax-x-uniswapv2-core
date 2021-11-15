@@ -15,7 +15,7 @@ import "./libraries/Math.sol";
 
 contract Borrowable is IBorrowable, PoolToken, BStorage, BSetter, BInterestRateModel, BAllowance {
 
-	uint public constant BORROW_FEE = 0.001e18; //0.1%
+	uint public constant BORROW_FEE = 0;
 
 	event Borrow(address indexed sender, address indexed borrower, address indexed receiver, uint borrowAmount, uint repayAmount, uint accountBorrowsPrior, uint accountBorrows, uint totalBorrows);
 	event Liquidate(address indexed sender, address indexed borrower, address indexed liquidator, uint seizeTokens, uint repayAmount, uint accountBorrowsPrior, uint accountBorrows, uint totalBorrows);
@@ -34,9 +34,10 @@ contract Borrowable is IBorrowable, PoolToken, BStorage, BSetter, BInterestRateM
 		if (_exchangeRate > _exchangeRateLast) {
 			uint _exchangeRateNew = _exchangeRate.sub( _exchangeRate.sub(_exchangeRateLast).mul(reserveFactor).div(1e18) );
 			uint liquidity = _totalSupply.mul(_exchangeRate).div(_exchangeRateNew).sub(_totalSupply);
-			if (liquidity == 0) return _exchangeRate;
-			address reservesManager = IFactory(factory).reservesManager();
-			_mint(reservesManager, liquidity);
+			if (liquidity > 0) {
+				address reservesManager = IFactory(factory).reservesManager();
+				_mint(reservesManager, liquidity);
+			}
 			exchangeRateLast = _exchangeRateNew;
 			return _exchangeRateNew;
 		}

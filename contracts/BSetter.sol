@@ -10,7 +10,7 @@ contract BSetter is PoolToken, BStorage {
 	uint public constant KINK_UR_MIN = 0.50e18; //50%
 	uint public constant KINK_UR_MAX = 0.99e18; //99%
 	uint public constant ADJUST_SPEED_MIN = 0.05787037e12; //0.5% per day
-	uint public constant ADJUST_SPEED_MAX = 5.787037e12; //50% per day
+	uint public constant ADJUST_SPEED_MAX = 57.87037e12; //500% per day
 
 	event NewReserveFactor(uint newReserveFactor);
 	event NewKinkUtilizationRate(uint newKinkUtilizationRate);
