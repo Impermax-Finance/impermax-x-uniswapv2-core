@@ -31,12 +31,13 @@ contract('BInterestRateModel', function (accounts) {
 		let kinkBorrowRate = 0.1 / SECONDS_IN_YEAR;
 		const adjustSpeed = 0.01 / SECONDS_IN_DAY;
 		const kinkUtilizationRate = 0.8;
-		const KINK_BORROW_RATE_MAX = 1 / SECONDS_IN_YEAR;
+		const KINK_BORROW_RATE_MAX = 25 / SECONDS_IN_YEAR;
 		const KINK_BORROW_RATE_MIN = 0.01 / SECONDS_IN_YEAR;
-		const KINK_MULTIPLIER = 5;
+		const KINK_MULTIPLIER = 2;
 		
 		before(async () => {
 			token = await BInterestRateModel.new();
+			await token.setKinkBorrowRate(bnMantissa(kinkBorrowRate));
 			await token.setKinkUtilizationRate(bnMantissa(kinkUtilizationRate));
 			await token.setAdjustSpeed(bnMantissa(adjustSpeed));
 		});

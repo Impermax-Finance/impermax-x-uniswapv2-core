@@ -26,7 +26,7 @@ const KINK_UR_TEST = bnMantissa(0.8);
 const KINK_UR_MAX = bnMantissa(0.99);
 const ADJUST_SPEED_MIN = bnMantissa(0.005 / SECONDS_IN_DAY);
 const ADJUST_SPEED_TEST = bnMantissa(0.01 / SECONDS_IN_DAY);
-const ADJUST_SPEED_MAX = bnMantissa(0.5 / SECONDS_IN_DAY);
+const ADJUST_SPEED_MAX = bnMantissa(5 / SECONDS_IN_DAY);
 const BORROW_TRACKER_TEST = address(10);
 
 function slightlyIncrease(bn) {
@@ -54,8 +54,8 @@ contract('BSetter', function (accounts) {
 	
 	it('initialization check', async () => {
 		const reserveFactor = bnMantissa(0.1);
-		const kinkUtilizationRate = bnMantissa(0.7);
-		const adjustSpeed = bnMantissa(0.05 / SECONDS_IN_DAY);
+		const kinkUtilizationRate = bnMantissa(0.75);
+		const adjustSpeed = bnMantissa(0.5 / SECONDS_IN_DAY);
 		expectAlmostEqualMantissa(await borrowable.reserveFactor(), reserveFactor);
 		expectAlmostEqualMantissa(await borrowable.kinkUtilizationRate(), kinkUtilizationRate);
 		expectAlmostEqualMantissa(await borrowable.adjustSpeed(), adjustSpeed);

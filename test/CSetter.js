@@ -17,6 +17,8 @@ const SAFETY_MARGIN_MAX = bnMantissa(Math.sqrt(2.50));
 const LIQUIDATION_INCENTIVE_MIN = bnMantissa(1.00);
 const LIQUIDATION_INCENTIVE_TEST = bnMantissa(1.03);
 const LIQUIDATION_INCENTIVE_MAX = bnMantissa(1.05);
+const LIQUIDATION_FEE_TEST = bnMantissa(0.05);
+const LIQUIDATION_FEE_MAX = bnMantissa(0.08);
 
 function slightlyIncrease(bn) {
 	return bn.mul( bnMantissa(1.0001) ).div( oneMantissa );
@@ -39,18 +41,24 @@ contract('CSetter', function (accounts) {
 	});
 	
 	it('initialization check', async () => {
-		const liquidationIncentive = bnMantissa(1.04);
 		const safetyMarginSqrt = bnMantissa(Math.sqrt(2.5));
-		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), liquidationIncentive);
+		const liquidationIncentive = bnMantissa(1.02);
+		const liquidationFee = bnMantissa(0.02);
+		const liquidationPenalty = bnMantissa(1.04);
 		expectAlmostEqualMantissa(await collateral.safetyMarginSqrt(), safetyMarginSqrt);
+		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), liquidationIncentive);
+		expectAlmostEqualMantissa(await collateral.liquidationFee(), liquidationFee);
+		expectAlmostEqualMantissa(await collateral.liquidationPenalty(), liquidationPenalty);
 	});
 
 	it('permissions check', async () => {
 		expect(await factory.admin()).to.eq(admin);
 		await collateral._setSafetyMarginSqrt(SAFETY_MARGIN_TEST, {from: admin});
 		await collateral._setLiquidationIncentive(LIQUIDATION_INCENTIVE_TEST, {from: admin});
+		await collateral._setLiquidationFee(LIQUIDATION_FEE_TEST, {from: admin});
 		await expectRevert(collateral._setSafetyMarginSqrt(SAFETY_MARGIN_TEST, {from: user}), 'Impermax: UNAUTHORIZED');
 		await expectRevert(collateral._setLiquidationIncentive(LIQUIDATION_INCENTIVE_TEST, {from: user}), 'Impermax: UNAUTHORIZED');
+		await expectRevert(collateral._setLiquidationFee(LIQUIDATION_FEE_TEST, {from: user}), 'Impermax: UNAUTHORIZED');
 	});
 
 	it('set safety margin', async () => {
@@ -63,6 +71,16 @@ contract('CSetter', function (accounts) {
 		const receipt = await collateral._setLiquidationIncentive(LIQUIDATION_INCENTIVE_TEST, {from: admin});
 		expectEvent(receipt, 'NewLiquidationIncentive', {});
 		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), LIQUIDATION_INCENTIVE_TEST);
+	});
+
+	it('set liquidation fee', async () => {
+		const receipt = await collateral._setLiquidationFee(LIQUIDATION_FEE_TEST, {from: admin});
+		expectEvent(receipt, 'NewLiquidationFee', {});
+		expectAlmostEqualMantissa(await collateral.liquidationFee(), LIQUIDATION_FEE_TEST);
+	});
+
+	it('check liquidation penalty', async () => {
+		expectAlmostEqualMantissa(await collateral.liquidationPenalty(), LIQUIDATION_INCENTIVE_TEST.add(LIQUIDATION_FEE_TEST));
 	});
 
 	it('safety margin boundaries', async () => {
@@ -89,5 +107,13 @@ contract('CSetter', function (accounts) {
 		await collateral._setLiquidationIncentive(succeedMax, {from: admin});
 		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), succeedMax);
 		await expectRevert(collateral._setLiquidationIncentive(failMax, {from: admin}), 'Impermax: INVALID_SETTING');
+	});
+
+	it('liquidation fee boundaries', async () => {
+		const succeedMax = slightlyDecrease(LIQUIDATION_FEE_MAX);
+		const failMax = slightlyIncrease(LIQUIDATION_FEE_MAX);
+		await collateral._setLiquidationFee(succeedMax, {from: admin});
+		expectAlmostEqualMantissa(await collateral.liquidationFee(), succeedMax);
+		await expectRevert(collateral._setLiquidationFee(failMax, {from: admin}), 'Impermax: INVALID_SETTING');
 	});
 });

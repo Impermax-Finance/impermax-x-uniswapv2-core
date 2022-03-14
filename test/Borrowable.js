@@ -88,7 +88,7 @@ contract('Borrowable', function (accounts) {
 		let collateral;
 		let recipient;
 		let borrowTracker;
-		const BORROW_FEE = (new BN(10)).pow(new BN(15));
+		const BORROW_FEE = new BN(0);
 		const borrowAmount = oneMantissa.mul(new BN(20));
 		const borrowedAmount = borrowAmount.mul(BORROW_FEE).div(oneMantissa).add(borrowAmount);
 		
@@ -256,11 +256,15 @@ contract('Borrowable', function (accounts) {
 		let recipient;
 		
 		const exchangeRate = oneMantissa.mul(new BN(2));
-		const liquidationIncentive = oneMantissa.mul(new BN(104)).div(new BN(100));
+		const liquidationIncentive = oneMantissa.mul(new BN(102)).div(new BN(100));
+		const liquidationFee = oneMantissa.mul(new BN(2)).div(new BN(100));
+		const liquidationPenalty = oneMantissa.mul(new BN(104)).div(new BN(100));
 		const price = oneMantissa.mul(new BN(3));
 		
 		const repayAmount = oneMantissa.mul(new BN(20));
-		const seizeTokens = repayAmount.mul(price).div(exchangeRate).mul(liquidationIncentive).div(oneMantissa);
+		const seizeTokensTotal = repayAmount.mul(price).div(exchangeRate).mul(liquidationPenalty).div(oneMantissa);
+		const seizeTokensLiquidator = repayAmount.mul(price).div(exchangeRate).mul(liquidationIncentive).div(oneMantissa);
+		const seizeTokensReserves = repayAmount.mul(price).div(exchangeRate).mul(liquidationFee).div(oneMantissa);
 		
 		async function pretendHasBorrowed(borrower, amount) {
 			const borrowIndex = await borrowable.borrowIndex();
@@ -269,11 +273,12 @@ contract('Borrowable', function (accounts) {
 		}
 		
 		before(async () => {
-			factory = await makeFactory({admin});
+			factory = await makeFactory({admin, reservesAdmin});
 			borrowable = await Borrowable.new();
 			underlying = await makeErc20Token();
 			collateral = await Collateral.new();
 			recipient = await Recipient.new();
+			await factory._setReservesManager(reservesManager, {from: reservesAdmin});
 			await borrowable.setUnderlyingHarness(underlying.address);
 			await borrowable.setCollateralHarness(collateral.address);
 			await borrowable.sync(); //avoid undesired borrowBalance growing 
@@ -281,12 +286,13 @@ contract('Borrowable', function (accounts) {
 			await collateral.setBorrowable0Harness(borrowable.address);				
 			await collateral.setExchangeRateHarness(exchangeRate);				
 			await collateral._setLiquidationIncentive(liquidationIncentive, {from: admin});
+			await collateral._setLiquidationFee(liquidationFee, {from: admin});
 			await collateral.setPricesHarness(price, '1');
 		});
 		
 		beforeEach(async () => {
 			await underlying.setBalanceHarness(borrowable.address, '0');
-			await collateral.setBalanceHarness(borrower, seizeTokens);
+			await collateral.setBalanceHarness(borrower, seizeTokensTotal);
 			await borrowable.sync();
 		});
 		
@@ -309,7 +315,7 @@ contract('Borrowable', function (accounts) {
 			const actualSeizeTokens = await borrowable.liquidate.call(borrower, liquidator);
 			const receipt = await borrowable.liquidate(borrower, liquidator);
 			
-			expect(actualSeizeTokens * 1).to.eq(seizeTokens * 1);
+			expect(actualSeizeTokens * 1).to.eq(seizeTokensLiquidator * 1);
 			expect(await borrowable.totalBorrows() * 1).to.eq(0);
 			expect(await borrowable.borrowBalance(borrower) * 1).to.eq(0);
 			expect(await borrowable.totalBalance() * 1).to.eq(repayAmount * 1);
@@ -317,7 +323,7 @@ contract('Borrowable', function (accounts) {
 				sender: root,
 				borrower: borrower,
 				liquidator: liquidator,
-				seizeTokens: seizeTokens,
+				seizeTokens: seizeTokensLiquidator,
 				repayAmount: repayAmount,
 				accountBorrowsPrior: repayAmount,
 				accountBorrows: '0',
@@ -341,7 +347,7 @@ contract('Borrowable', function (accounts) {
 				sender: root,
 				borrower: borrower,
 				liquidator: liquidator,
-				seizeTokens: seizeTokens,
+				seizeTokens: seizeTokensLiquidator,
 				repayAmount: repayAmount,
 				accountBorrowsPrior: accountBorrowsPrior,
 				accountBorrows: accountBorrows,
@@ -365,7 +371,7 @@ contract('Borrowable', function (accounts) {
 				sender: root,
 				borrower: borrower,
 				liquidator: liquidator,
-				seizeTokens: seizeTokens.div(new BN(2)),
+				seizeTokens: seizeTokensLiquidator.div(new BN(2)),
 				repayAmount: repayAmount,
 				accountBorrowsPrior: accountBorrowsPrior,
 				accountBorrows: accountBorrows,

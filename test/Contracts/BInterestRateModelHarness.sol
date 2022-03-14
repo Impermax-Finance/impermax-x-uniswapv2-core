@@ -12,6 +12,10 @@ contract BInterestRateModelHarness is BInterestRateModel {
 		borrowRate = _borrowRate;
 	}
 	
+	function setKinkBorrowRate(uint48 _kinkBorrowRate) public {
+		kinkBorrowRate = _kinkBorrowRate;
+	}
+	
 	function setKinkUtilizationRate(uint _kinkUtilizationRate) public {
 		kinkUtilizationRate = _kinkUtilizationRate;
 	}

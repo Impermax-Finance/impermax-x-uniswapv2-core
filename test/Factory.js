@@ -32,7 +32,7 @@ function getCreate2Address(create2Inputs) {
 
 function getCollateralAddress(deployerAddress, factoryAddress, uniswapV2PairAddress) {
 	const salt = keccak256(encodePacked(['address', 'address'], [factoryAddress, uniswapV2PairAddress]));
-	//console.log('Collateral bytecode: ' + keccak256(CollateralProduction.bytecode));
+	console.log('Collateral bytecode: ' + keccak256(CollateralProduction.bytecode));
 	return getCreate2Address([
 		'0xff',
 		deployerAddress,
@@ -43,7 +43,7 @@ function getCollateralAddress(deployerAddress, factoryAddress, uniswapV2PairAddr
 
 function getBorrowableAddress(deployerAddress, factoryAddress, uniswapV2PairAddress, index) {
 	const salt = keccak256(encodePacked(['address', 'address', 'uint8'], [factoryAddress, uniswapV2PairAddress, index]));
-	//console.log('Borrowable bytecode: ' + keccak256(BorrowableProduction.bytecode));
+	console.log('Borrowable bytecode: ' + keccak256(BorrowableProduction.bytecode));
 	return getCreate2Address([
 		'0xff',
 		deployerAddress,

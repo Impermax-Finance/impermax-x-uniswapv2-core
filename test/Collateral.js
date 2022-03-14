@@ -23,12 +23,6 @@ const {
 const { keccak256, toUtf8Bytes } = require('ethers/utils');
 
 const oneMantissa = (new BN(10)).pow(new BN(18));
-const SAFETY_MARGIN_MIN = bnMantissa(Math.sqrt(1.5));
-const SAFETY_MARGIN_TEST = bnMantissa(Math.sqrt(1.75));
-const SAFETY_MARGIN_MAX = bnMantissa(Math.sqrt(2.5));
-const LIQUIDATION_INCENTIVE_MIN = bnMantissa(1.01);
-const LIQUIDATION_INCENTIVE_TEST = bnMantissa(1.03);
-const LIQUIDATION_INCENTIVE_MAX = bnMantissa(1.05);
 
 const TEST_AMOUNT = oneMantissa.mul(new BN(200));
 const MAX_UINT_256 = (new BN(2)).pow(new BN(256)).sub(new BN(1));
@@ -46,10 +40,13 @@ contract('Collateral', function (accounts) {
 	let admin = accounts[2];		
 	let borrower = accounts[3];		
 	let liquidator = accounts[4];		
+	let reservesAdmin = accounts[5];		
+	let reservesManager = accounts[6];		
 	let factory;
 		
 	before(async () => {
-		factory = await makeFactory({admin});
+		factory = await makeFactory({admin, reservesAdmin});
+		await factory._setReservesManager(reservesManager, {from: reservesAdmin});
 	});
 
 	describe('getPrices', () => {
@@ -118,11 +115,11 @@ contract('Collateral', function (accounts) {
 	});
 	
 	[
-		{safetyMargin: 2.50, liquidationIncentive: 1.01, amounts: [280, 100, 100], prices: [1, 1]},
-		{safetyMargin: 2.25, liquidationIncentive: 1.02, amounts: [3060, 0, 2000], prices: [1, 1]},
-		{safetyMargin: 2.00, liquidationIncentive: 1.03, amounts: [1000, 111, 1.546], prices: [11.3, 0.56]},
-		{safetyMargin: 1.75, liquidationIncentive: 1.04, amounts: [11.3, 175.6, 200], prices: [0.0059, 0.034]},
-		{safetyMargin: 1.50, liquidationIncentive: 1.05, amounts: [2154546, 1, 1.12e12], prices: [1154546, 0.0000008661]},
+		{safetyMargin: 2.50, liquidationIncentive: 1.01, liquidationFee: 0.08, amounts: [280, 100, 100], prices: [1, 1]},
+		{safetyMargin: 2.25, liquidationIncentive: 1.02, liquidationFee: 0.07, amounts: [3060, 0, 2000], prices: [1, 1]},
+		{safetyMargin: 2.00, liquidationIncentive: 1.03, liquidationFee: 0.00, amounts: [1000, 111, 1.546], prices: [11.3, 0.56]},
+		{safetyMargin: 1.75, liquidationIncentive: 1.04, liquidationFee: 0.03, amounts: [11.3, 175.6, 200], prices: [0.0059, 0.034]},
+		{safetyMargin: 1.50, liquidationIncentive: 1.05, liquidationFee: 0.02, amounts: [2154546, 1, 1.12e12], prices: [1154546, 0.0000008661]},
 	].forEach((testCase) => {
 		describe(`Collateral tests for ${JSON.stringify(testCase)}`, () => {
 			let collateral;
@@ -130,22 +127,23 @@ contract('Collateral', function (accounts) {
 			let borrowable1;
 			const exchangeRate = 2;
 			
-			const {safetyMargin, liquidationIncentive, amounts, prices} = testCase;
+			const {safetyMargin, liquidationIncentive, liquidationFee, amounts, prices} = testCase;
 			const collateralValue = amounts[0];
+			const liquidationPenalty = liquidationIncentive + liquidationFee;
 			
 			//Case A: price0 / price1 increase by safetyMargin
 			const price0FinalA = prices[0] * Math.sqrt(safetyMargin);
 			const price1FinalA = prices[1] / Math.sqrt(safetyMargin);
-			const collateralNeededA = (price0FinalA * amounts[1] + price1FinalA * amounts[2]) * liquidationIncentive;
-			const maxBorrowable0A = (collateralValue / liquidationIncentive - price1FinalA * amounts[2]) / price0FinalA;
-			const maxBorrowable1A = (collateralValue / liquidationIncentive - price0FinalA * amounts[1]) / price1FinalA;
+			const collateralNeededA = (price0FinalA * amounts[1] + price1FinalA * amounts[2]) * liquidationPenalty;
+			const maxBorrowable0A = (collateralValue / liquidationPenalty - price1FinalA * amounts[2]) / price0FinalA;
+			const maxBorrowable1A = (collateralValue / liquidationPenalty - price0FinalA * amounts[1]) / price1FinalA;
 			
 			//Case B: price0 / price1 decrease by safetyMargin
 			const price0FinalB = prices[0] / Math.sqrt(safetyMargin);
 			const price1FinalB = prices[1] * Math.sqrt(safetyMargin);
-			const collateralNeededB = (price0FinalB * amounts[1] + price1FinalB * amounts[2]) * liquidationIncentive;
-			const maxBorrowable0B = (collateralValue / liquidationIncentive - price1FinalB * amounts[2]) / price0FinalB;
-			const maxBorrowable1B = (collateralValue / liquidationIncentive - price0FinalB * amounts[1]) / price1FinalB;
+			const collateralNeededB = (price0FinalB * amounts[1] + price1FinalB * amounts[2]) * liquidationPenalty;
+			const maxBorrowable0B = (collateralValue / liquidationPenalty - price1FinalB * amounts[2]) / price0FinalB;
+			const maxBorrowable1B = (collateralValue / liquidationPenalty - price0FinalB * amounts[1]) / price1FinalB;
 			
 			//Calculate liquidity offchain
 			const collateralNeeded = (collateralNeededA > collateralNeededB) ? collateralNeededA : collateralNeededB;
@@ -166,6 +164,7 @@ contract('Collateral', function (accounts) {
 				
 				await collateral._setSafetyMarginSqrt(bnMantissa(Math.sqrt(safetyMargin)), {from: admin});
 				await collateral._setLiquidationIncentive(bnMantissa(liquidationIncentive), {from: admin});
+				await collateral._setLiquidationFee(bnMantissa(liquidationFee), {from: admin});
 				await collateral.setPricesHarness(bnMantissa(prices[0]), bnMantissa(prices[1]));
 			});
 			
@@ -242,12 +241,14 @@ contract('Collateral', function (accounts) {
 		let borrowable0;
 		let borrowable1;
 		const exchangeRate = 2;
-		const liquidationIncentive = 1.04;
+		const liquidationIncentive = 1.02;
+		const liquidationFee = 0.02;
+		const liquidationPenalty = liquidationIncentive + liquidationFee;
 		const price0 = 2;
 		const price1 = 0.5;
 		const collateralTokens = 100;
-		const maxRepay0 = (collateralTokens * exchangeRate) / price0 / liquidationIncentive;
-		const maxRepay1 = (collateralTokens * exchangeRate) / price1 / liquidationIncentive;
+		const maxRepay0 = (collateralTokens * exchangeRate) / price0 / liquidationPenalty;
+		const maxRepay1 = (collateralTokens * exchangeRate) / price1 / liquidationPenalty;
 		
 		before(async () => {
 			collateral = await Collateral.new();
@@ -258,6 +259,7 @@ contract('Collateral', function (accounts) {
 			await collateral.setBorrowable1Harness(borrowable1.address);
 			await collateral.setExchangeRateHarness(bnMantissa(exchangeRate));				
 			await collateral._setLiquidationIncentive(bnMantissa(liquidationIncentive), {from: admin});
+			await collateral._setLiquidationFee(bnMantissa(liquidationFee), {from: admin});
 			await collateral.setPricesHarness(bnMantissa(price0), bnMantissa(price1));
 		});
 		
@@ -292,10 +294,12 @@ contract('Collateral', function (accounts) {
 		
 		it(`seize succeed`, async () => {
 			await collateral.setAccountLiquidityHarness(borrower, '0', '1');
-			const expectedLiquidity = slightlyDecrease(bnMantissa(collateralTokens));
+			const expectedLiquidity = slightlyDecrease(bnMantissa(collateralTokens * (liquidationPenalty - liquidationFee) / liquidationPenalty));
+			const expectedReservesLiquidity = slightlyDecrease(bnMantissa(collateralTokens * liquidationFee / liquidationPenalty));
 			
 			//Repay with borrowable0
 			await collateral.setBalanceHarness(liquidator, '0');
+			await collateral.setBalanceHarness(reservesManager, '0');
 			await collateral.setBalanceHarness(borrower, bnMantissa(collateralTokens));
 			const repayAmount0 = slightlyDecrease(bnMantissa(maxRepay0));
 			const receipt0 = await borrowable0.seizeHarness(collateral.address, liquidator, borrower, repayAmount0);
@@ -303,10 +307,16 @@ contract('Collateral', function (accounts) {
 				'from': borrower,
 				'to': liquidator,
 			});
+			expectEvent(receipt0, 'Transfer', {
+				'from': borrower,
+				'to': reservesManager,
+			});
 			expectAlmostEqualMantissa(await collateral.balanceOf(liquidator), expectedLiquidity);
+			expectAlmostEqualMantissa(await collateral.balanceOf(reservesManager), expectedReservesLiquidity);
 			
 			//Repay with borrowable1
 			await collateral.setBalanceHarness(liquidator, '0');
+			await collateral.setBalanceHarness(reservesManager, '0');
 			await collateral.setBalanceHarness(borrower, bnMantissa(collateralTokens));
 			const repayAmount1 = slightlyDecrease(bnMantissa(maxRepay1));
 			const receipt1 = await borrowable1.seizeHarness(collateral.address, liquidator, borrower, repayAmount1);
@@ -314,7 +324,12 @@ contract('Collateral', function (accounts) {
 				'from': borrower,
 				'to': liquidator,
 			});
+			expectEvent(receipt0, 'Transfer', {
+				'from': borrower,
+				'to': reservesManager,
+			});
 			expectAlmostEqualMantissa(await collateral.balanceOf(liquidator), expectedLiquidity);
+			expectAlmostEqualMantissa(await collateral.balanceOf(reservesManager), expectedReservesLiquidity);
 		});
 	});
 

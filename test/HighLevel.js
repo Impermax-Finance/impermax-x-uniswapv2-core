@@ -55,28 +55,29 @@ contract('Highlevel', function (accounts) {
 	const price1A = 0.2;	
 	const borrowAmount0 = bnMantissa(20);
 	const borrowAmount1 = bnMantissa(500);
-	const expectedBorrowAmont0A = bnMantissa(20.02);
-	const expectedBorrowAmont1A = bnMantissa(500.5);
-	const expectedAccountLiquidityA = bnMantissa(69.5560);
-	const expectedBorrowRate0A = bnMantissa(0.1 * 5 / SECONDS_IN_YEAR);
-	const expectedBorrowRate1A = bnMantissa(0.07142857 / SECONDS_IN_YEAR);
-	const timeElapsed = 1000000; //11.57 days 
-	const expectedBorrowAmont0B = bnMantissa(20.337414);
-	const expectedBorrowAmont1B = bnMantissa(501.63362);
-	const expectedAccountLiquidityB = bnMantissa(66.79709);
-	const expectedBorrowRate0B = bnMantissa(0.3314814 * 5 / SECONDS_IN_YEAR);
-	const expectedBorrowRate1B = bnMantissa(0.05971332 / SECONDS_IN_YEAR);
+	const expectedBorrowAmont0A = bnMantissa(20);
+	const expectedBorrowAmont1A = bnMantissa(500);
+	const expectedAccountLiquidityA = bnMantissa(69.7862);
+	const expectedBorrowRate0A = bnMantissa(0.2 * 2 / SECONDS_IN_YEAR);
+	const expectedBorrowRate1A = bnMantissa(0.2 * 50 / 75 / SECONDS_IN_YEAR);
+	const timeElapsed = 100000; //1.157 days 
+	const expectedBorrowAmont0B = bnMantissa(20.025367);
+	const expectedBorrowAmont1B = bnMantissa(500.21140);
+	const expectedAccountLiquidityB = bnMantissa(69.5500);
+	const expectedBorrowRate0B = bnMantissa(0.315741 * 2 / SECONDS_IN_YEAR);
+	const expectedBorrowRate1B = bnMantissa(0.107613 / SECONDS_IN_YEAR);
 	const price0B = 7.645966;
 	const price1B = 0.13078792;
-	const expectedAccountLiquidityC = bnMantissa(1.14593614);
+	const expectedAccountLiquidityC = bnMantissa(5.191604);
 	const price0C = 7.874008;
 	const price1C = 0.1270001;
-	const expectedAccountShortfallD = bnMantissa(5.230578);
-	const liquidatedAmount = bnMantissa(166.54244);
-	const expectedLenderProfit0 = bnMantissa(0.303672);
-	const expectedProtocolProfit0 = bnMantissa(0.0337414);
-	
-	
+	const expectedAccountShortfallD = bnMantissa(1.071458);
+	const liquidatedAmount = bnMantissa(163.9871);
+	const liquidatedAmountLiquidator = bnMantissa(160.8335);
+	const liquidatedAmountReserves = bnMantissa(3.15360);
+	const expectedLenderProfit0 = bnMantissa(0.0228327);
+	const expectedProtocolProfit0 = bnMantissa(0.00253695);
+
 	before(async () => {
 		await freezeTime();
 	});
@@ -115,15 +116,16 @@ contract('Highlevel', function (accounts) {
 	it('settings sanity check', async () => {
 		//For Highlevel tests to pass, the lending pool should have these default settings
 		expectAlmostEqualMantissa(await collateral.exchangeRate.call(), oneMantissa);
-		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), bnMantissa(1.04));
+		expectAlmostEqualMantissa(await collateral.liquidationIncentive(), bnMantissa(1.02));
+		expectAlmostEqualMantissa(await collateral.liquidationFee(), bnMantissa(0.02));
 		expectAlmostEqualMantissa(await collateral.safetyMarginSqrt(), bnMantissa(Math.sqrt(2.5)));
 		expectAlmostEqualMantissa(await borrowable0.exchangeRate.call(), oneMantissa);
-		expectAlmostEqualMantissa(await borrowable0.BORROW_FEE(), oneMantissa.div(new BN(1000)));
-		expectAlmostEqualMantissa(await borrowable0.kinkUtilizationRate(), bnMantissa(0.7));
-		expectAlmostEqualMantissa(await borrowable0.kinkBorrowRate(), bnMantissa(0.1 / SECONDS_IN_YEAR));
+		expectAlmostEqualMantissa(await borrowable0.BORROW_FEE(), oneMantissa.mul(new BN(0)));
+		expectAlmostEqualMantissa(await borrowable0.kinkUtilizationRate(), bnMantissa(0.75));
+		expectAlmostEqualMantissa(await borrowable0.kinkBorrowRate(), bnMantissa(0.2 / SECONDS_IN_YEAR));
 		expectAlmostEqualMantissa(await borrowable0.reserveFactor(), bnMantissa(0.1));
-		expectEqual(await borrowable0.KINK_MULTIPLIER(), 5);
-		expectAlmostEqualMantissa(await borrowable0.adjustSpeed(), bnMantissa(0.05 / SECONDS_IN_DAY));
+		expectEqual(await borrowable0.KINK_MULTIPLIER(), 2);
+		expectAlmostEqualMantissa(await borrowable0.adjustSpeed(), bnMantissa(0.5 / SECONDS_IN_DAY));
 	});
 	
 	it('lend', async () => {
@@ -221,7 +223,8 @@ contract('Highlevel', function (accounts) {
 		await token0.transfer(borrowable0.address, currentBorrowAmount0, {from: liquidator});
 		const receiptLiquidate = await borrowable0.liquidate(borrower, liquidator);
 		expect(await borrowable0.borrowBalance(borrower) / 1e18).to.lt(0.01);
-		expectAlmostEqualMantissa(await collateral.balanceOf(liquidator), liquidatedAmount);
+		expectAlmostEqualMantissa(await collateral.balanceOf(liquidator), liquidatedAmountLiquidator);
+		expectAlmostEqualMantissa(await collateral.balanceOf(reservesManager), liquidatedAmountReserves);
 		expectAlmostEqualMantissa(await collateral.balanceOf(borrower), collateralAmount.sub(liquidatedAmount));
 		//console.log(receiptLiquidate.receipt.gasUsed + ' liquidate');
 	});
