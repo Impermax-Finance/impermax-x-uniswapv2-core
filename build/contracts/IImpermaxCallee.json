@@ -68,14 +68,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IImpermaxCallee.sol",
     "exportedSymbols": {
       "IImpermaxCallee": [
-        5227
+        5172
       ]
     },
-    "id": 5228,
+    "id": 5173,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5206,
+        "id": 5151,
         "literals": [
           "solidity",
           ">=",
@@ -91,9 +91,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5227,
+        "id": 5172,
         "linearizedBaseContracts": [
-          5227
+          5172
         ],
         "name": "IImpermaxCallee",
         "nodeType": "ContractDefinition",
@@ -101,22 +101,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5217,
+            "id": 5162,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "impermaxBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5215,
+              "id": 5160,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5208,
+                  "id": 5153,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "85:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -125,7 +125,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5207,
+                    "id": 5152,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "85:7:20",
@@ -140,10 +140,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5210,
+                  "id": 5155,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "101:16:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -152,7 +152,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5209,
+                    "id": 5154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "101:7:20",
@@ -167,10 +167,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5212,
+                  "id": 5157,
                   "name": "borrowAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "119:17:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -179,7 +179,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5211,
+                    "id": 5156,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "119:4:20",
@@ -193,10 +193,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5214,
+                  "id": 5159,
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "138:19:20",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -205,7 +205,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 5213,
+                    "id": 5158,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "138:5:20",
@@ -221,12 +221,12 @@
               "src": "84:74:20"
             },
             "returnParameters": {
-              "id": 5216,
+              "id": 5161,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "167:0:20"
             },
-            "scope": 5227,
+            "scope": 5172,
             "src": "61:107:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -235,22 +235,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5226,
+            "id": 5171,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "impermaxRedeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5224,
+              "id": 5169,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5219,
+                  "id": 5164,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "198:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -259,7 +259,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5218,
+                    "id": 5163,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "198:7:20",
@@ -274,10 +274,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5221,
+                  "id": 5166,
                   "name": "redeemAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "214:17:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -286,7 +286,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5220,
+                    "id": 5165,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "214:4:20",
@@ -300,10 +300,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5223,
+                  "id": 5168,
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "233:19:20",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -312,7 +312,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 5222,
+                    "id": 5167,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "233:5:20",
@@ -328,19 +328,19 @@
               "src": "197:56:20"
             },
             "returnParameters": {
-              "id": 5225,
+              "id": 5170,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "262:0:20"
             },
-            "scope": 5227,
+            "scope": 5172,
             "src": "174:89:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5228,
+        "scope": 5173,
         "src": "28:238:20"
       }
     ],
@@ -350,14 +350,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IImpermaxCallee.sol",
     "exportedSymbols": {
       "IImpermaxCallee": [
-        5227
+        5172
       ]
     },
-    "id": 5228,
+    "id": 5173,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5206,
+        "id": 5151,
         "literals": [
           "solidity",
           ">=",
@@ -373,9 +373,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 5227,
+        "id": 5172,
         "linearizedBaseContracts": [
-          5227
+          5172
         ],
         "name": "IImpermaxCallee",
         "nodeType": "ContractDefinition",
@@ -383,22 +383,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5217,
+            "id": 5162,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "impermaxBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5215,
+              "id": 5160,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5208,
+                  "id": 5153,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "85:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -407,7 +407,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5207,
+                    "id": 5152,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "85:7:20",
@@ -422,10 +422,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5210,
+                  "id": 5155,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "101:16:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -434,7 +434,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5209,
+                    "id": 5154,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "101:7:20",
@@ -449,10 +449,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5212,
+                  "id": 5157,
                   "name": "borrowAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "119:17:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -461,7 +461,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5211,
+                    "id": 5156,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "119:4:20",
@@ -475,10 +475,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5214,
+                  "id": 5159,
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5217,
+                  "scope": 5162,
                   "src": "138:19:20",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -487,7 +487,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 5213,
+                    "id": 5158,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "138:5:20",
@@ -503,12 +503,12 @@
               "src": "84:74:20"
             },
             "returnParameters": {
-              "id": 5216,
+              "id": 5161,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "167:0:20"
             },
-            "scope": 5227,
+            "scope": 5172,
             "src": "61:107:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -517,22 +517,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 5226,
+            "id": 5171,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "impermaxRedeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5224,
+              "id": 5169,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5219,
+                  "id": 5164,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "198:14:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -541,7 +541,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5218,
+                    "id": 5163,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "198:7:20",
@@ -556,10 +556,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5221,
+                  "id": 5166,
                   "name": "redeemAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "214:17:20",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -568,7 +568,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5220,
+                    "id": 5165,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "214:4:20",
@@ -582,10 +582,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 5223,
+                  "id": 5168,
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5226,
+                  "scope": 5171,
                   "src": "233:19:20",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -594,7 +594,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 5222,
+                    "id": 5167,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "233:5:20",
@@ -610,19 +610,19 @@
               "src": "197:56:20"
             },
             "returnParameters": {
-              "id": 5225,
+              "id": 5170,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "262:0:20"
             },
-            "scope": 5227,
+            "scope": 5172,
             "src": "174:89:20",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 5228,
+        "scope": 5173,
         "src": "28:238:20"
       }
     ],
@@ -634,7 +634,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-22T23:43:56.770Z",
+  "updatedAt": "2022-03-14T10:55:07.464Z",
   "devdoc": {
     "methods": {}
   },

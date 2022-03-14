@@ -34,6 +34,21 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "liquidationFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "liquidationIncentive",
       "outputs": [
         {
@@ -75,27 +90,42 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "liquidationPenalty",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"borrowable0\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"borrowable1\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"liquidationIncentive\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"safetyMarginSqrt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"simpleUniswapOracle\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol\":\"CStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol\":{\"keccak256\":\"0xf1b7007b9ff996614c737f039c5ce3b2d578eeb690b1cd47baa51ad847f3c0a5\",\"urls\":[\"bzz-raw://4060bc1bd96534b571168ff813d1af019da19af01ad685f2eb611af15eed4e6d\",\"dweb:/ipfs/QmYDQ9rXk6gZh1ADVsaTKyR8Do6gsyTXqhqd7CnFDoSotS\"]}},\"version\":1}",
-  "bytecode": "0x60806040526715f155637eba0c00600355670e6ed27d6668000060045534801561002857600080fd5b50610164806100386000396000f3fe608060405234801561001057600080fd5b50600436106100675760003560e01c80637c6674b5116100505780637c6674b5146100b75780638c765e94146100bf578063daf88818146100c757610067565b80632fa5ae1b1461006c578063356c571f1461009d575b600080fd5b6100746100cf565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100a56100eb565b60408051918252519081900360200190f35b6100746100f1565b6100a561010d565b610074610113565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b60025473ffffffffffffffffffffffffffffffffffffffff1681565b60045481565b60015473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820d8a278088137cfa4507f31cba02b6015cf5452a9764812d74c50777400763af964736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100675760003560e01c80637c6674b5116100505780637c6674b5146100b75780638c765e94146100bf578063daf88818146100c757610067565b80632fa5ae1b1461006c578063356c571f1461009d575b600080fd5b6100746100cf565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100a56100eb565b60408051918252519081900360200190f35b6100746100f1565b6100a561010d565b610074610113565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b60025473ffffffffffffffffffffffffffffffffffffffff1681565b60045481565b60015473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820d8a278088137cfa4507f31cba02b6015cf5452a9764812d74c50777400763af964736f6c63430005100032",
-  "sourceMap": "30:240:8:-;;;181:13;150:44;;254:7;219:42;;30:240;8:9:-1;5:2;;;30:1;27;20:12;5:2;30:240:8;;;;;;;",
-  "deployedSourceMap": "30:240:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;30:240:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;52:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;150:44;;;:::i;:::-;;;;;;;;;;;;;;;;112:34;;;:::i;219:42::-;;;:::i;82:26::-;;;:::i;52:::-;;;;;;:::o;150:44::-;;;;:::o;112:34::-;;;;;;:::o;219:42::-;;;;:::o;82:26::-;;;;;;:::o",
-  "source": "pragma solidity =0.5.16;\r\n\r\n\r\ncontract CStorage {\r\n\taddress public borrowable0;\r\n\taddress public borrowable1;\r\n\taddress public simpleUniswapOracle;\r\n\tuint public safetyMarginSqrt = 1.58113883e18; //safetyMargin: 250%\r\n\tuint public liquidationIncentive = 1.04e18; //4%\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"borrowable0\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"borrowable1\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"liquidationFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"liquidationIncentive\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"liquidationPenalty\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"safetyMarginSqrt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"simpleUniswapOracle\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol\":\"CStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[]},\"sources\":{\"/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol\":{\"keccak256\":\"0x17f7acac010e236e61002ab7514345ef1b7e8393fb980d56454bdd38533bde90\",\"urls\":[\"bzz-raw://fc8b062a5920ba2392b5ef5f9e25c9c06eaae238b50a0ad645043fe0344e63a0\",\"dweb:/ipfs/QmQqmPo8NgE4FjZyQs6N5QZAaZJCDyLciYPQGmcoeQB9pY\"]}},\"version\":1}",
+  "bytecode": "0x60806040526715f155637eba0c00600355670e27c49886e6000060045566470de4df82000060055534801561003357600080fd5b5061019a806100436000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c80637c6674b51161005b5780637c6674b5146100d55780638c765e94146100dd578063a36a3630146100e5578063daf88818146100ed5761007d565b806323f5589a146100825780632fa5ae1b1461009c578063356c571f146100cd575b600080fd5b61008a6100f5565b60408051918252519081900360200190f35b6100a46100ff565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b61008a61011b565b6100a4610121565b61008a61013d565b61008a610143565b6100a4610149565b6005546004540190565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b60025473ffffffffffffffffffffffffffffffffffffffff1681565b60045481565b60055481565b60015473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a7231582075d8f52971d2ca1faad0514a06cb486291e64f39d088e58a26fc14b14c3b309f64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061007d5760003560e01c80637c6674b51161005b5780637c6674b5146100d55780638c765e94146100dd578063a36a3630146100e5578063daf88818146100ed5761007d565b806323f5589a146100825780632fa5ae1b1461009c578063356c571f146100cd575b600080fd5b61008a6100f5565b60408051918252519081900360200190f35b6100a46100ff565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b61008a61011b565b6100a4610121565b61008a61013d565b61008a610143565b6100a4610149565b6005546004540190565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b60025473ffffffffffffffffffffffffffffffffffffffff1681565b60045481565b60055481565b60015473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a7231582075d8f52971d2ca1faad0514a06cb486291e64f39d088e58a26fc14b14c3b309f64736f6c63430005100032",
+  "sourceMap": "30:402:8:-;;;181:13;150:44;;254:7;219:42;;299:7;270:36;;30:402;8:9:-1;5:2;;;30:1;27;20:12;5:2;30:402:8;;;;;;;",
+  "deployedSourceMap": "30:402:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;30:402:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;318:111;;;:::i;:::-;;;;;;;;;;;;;;;;52:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;150:44;;;:::i;112:34::-;;;:::i;219:42::-;;;:::i;270:36::-;;;:::i;82:26::-;;;:::i;318:111::-;410:14;;387:20;;:37;318:111;:::o;52:26::-;;;;;;:::o;150:44::-;;;;:::o;112:34::-;;;;;;:::o;219:42::-;;;;:::o;270:36::-;;;;:::o;82:26::-;;;;;;:::o",
+  "source": "pragma solidity =0.5.16;\r\n\r\n\r\ncontract CStorage {\r\n\taddress public borrowable0;\r\n\taddress public borrowable1;\r\n\taddress public simpleUniswapOracle;\r\n\tuint public safetyMarginSqrt = 1.58113883e18; //safetyMargin: 250%\r\n\tuint public liquidationIncentive = 1.02e18; //2%\r\n\tuint public liquidationFee = 0.02e18; //2%\r\n\t\r\n\tfunction liquidationPenalty() public view returns (uint) {\r\n\t\treturn liquidationIncentive + liquidationFee;\r\n\t}\r\n}",
   "sourcePath": "C:\\Users\\simor\\Desktop\\impermax-x-uniswapv2-core\\contracts\\CStorage.sol",
   "ast": {
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol",
     "exportedSymbols": {
       "CStorage": [
-        1740
+        1781
       ]
     },
-    "id": 1741,
+    "id": 1782,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1727,
+        "id": 1755,
         "literals": [
           "solidity",
           "=",
@@ -111,19 +141,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1740,
+        "id": 1781,
         "linearizedBaseContracts": [
-          1740
+          1781
         ],
         "name": "CStorage",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1729,
+            "id": 1757,
             "name": "borrowable0",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "52:26:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -132,7 +162,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1728,
+              "id": 1756,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "52:7:8",
@@ -147,10 +177,10 @@
           },
           {
             "constant": false,
-            "id": 1731,
+            "id": 1759,
             "name": "borrowable1",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "82:26:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -159,7 +189,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1730,
+              "id": 1758,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "82:7:8",
@@ -174,10 +204,10 @@
           },
           {
             "constant": false,
-            "id": 1733,
+            "id": 1761,
             "name": "simpleUniswapOracle",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "112:34:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -186,7 +216,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1732,
+              "id": 1760,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "112:7:8",
@@ -201,10 +231,10 @@
           },
           {
             "constant": false,
-            "id": 1736,
+            "id": 1764,
             "name": "safetyMarginSqrt",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "150:44:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -213,7 +243,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1734,
+              "id": 1762,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "150:4:8",
@@ -225,7 +255,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "312e3538313133383833653138",
-              "id": 1735,
+              "id": 1763,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -244,10 +274,10 @@
           },
           {
             "constant": false,
-            "id": 1739,
+            "id": 1767,
             "name": "liquidationIncentive",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "219:42:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -256,7 +286,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1737,
+              "id": 1765,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "219:4:8",
@@ -267,8 +297,8 @@
             },
             "value": {
               "argumentTypes": null,
-              "hexValue": "312e3034653138",
-              "id": 1738,
+              "hexValue": "312e3032653138",
+              "id": 1766,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -278,32 +308,186 @@
               "src": "254:7:8",
               "subdenomination": null,
               "typeDescriptions": {
-                "typeIdentifier": "t_rational_1040000000000000000_by_1",
-                "typeString": "int_const 1040000000000000000"
+                "typeIdentifier": "t_rational_1020000000000000000_by_1",
+                "typeString": "int_const 1020000000000000000"
               },
-              "value": "1.04e18"
+              "value": "1.02e18"
             },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 1770,
+            "name": "liquidationFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 1781,
+            "src": "270:36:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1768,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "270:4:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "302e3032653138",
+              "id": 1769,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "299:7:8",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_20000000000000000_by_1",
+                "typeString": "int_const 20000000000000000"
+              },
+              "value": "0.02e18"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1779,
+              "nodeType": "Block",
+              "src": "375:54:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1777,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 1775,
+                      "name": "liquidationIncentive",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1767,
+                      "src": "387:20:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "+",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 1776,
+                      "name": "liquidationFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1770,
+                      "src": "410:14:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "387:37:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1774,
+                  "id": 1778,
+                  "nodeType": "Return",
+                  "src": "380:44:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1780,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "liquidationPenalty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1771,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "345:2:8"
+            },
+            "returnParameters": {
+              "id": 1774,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1773,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1780,
+                  "src": "369:4:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1772,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "369:4:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "368:6:8"
+            },
+            "scope": 1781,
+            "src": "318:111:8",
+            "stateMutability": "view",
+            "superFunction": 4762,
             "visibility": "public"
           }
         ],
-        "scope": 1741,
-        "src": "30:240:8"
+        "scope": 1782,
+        "src": "30:402:8"
       }
     ],
-    "src": "0:270:8"
+    "src": "0:432:8"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/CStorage.sol",
     "exportedSymbols": {
       "CStorage": [
-        1740
+        1781
       ]
     },
-    "id": 1741,
+    "id": 1782,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1727,
+        "id": 1755,
         "literals": [
           "solidity",
           "=",
@@ -319,19 +503,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1740,
+        "id": 1781,
         "linearizedBaseContracts": [
-          1740
+          1781
         ],
         "name": "CStorage",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1729,
+            "id": 1757,
             "name": "borrowable0",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "52:26:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -340,7 +524,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1728,
+              "id": 1756,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "52:7:8",
@@ -355,10 +539,10 @@
           },
           {
             "constant": false,
-            "id": 1731,
+            "id": 1759,
             "name": "borrowable1",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "82:26:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -367,7 +551,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1730,
+              "id": 1758,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "82:7:8",
@@ -382,10 +566,10 @@
           },
           {
             "constant": false,
-            "id": 1733,
+            "id": 1761,
             "name": "simpleUniswapOracle",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "112:34:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -394,7 +578,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1732,
+              "id": 1760,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "112:7:8",
@@ -409,10 +593,10 @@
           },
           {
             "constant": false,
-            "id": 1736,
+            "id": 1764,
             "name": "safetyMarginSqrt",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "150:44:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -421,7 +605,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1734,
+              "id": 1762,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "150:4:8",
@@ -433,7 +617,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "312e3538313133383833653138",
-              "id": 1735,
+              "id": 1763,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -452,10 +636,10 @@
           },
           {
             "constant": false,
-            "id": 1739,
+            "id": 1767,
             "name": "liquidationIncentive",
             "nodeType": "VariableDeclaration",
-            "scope": 1740,
+            "scope": 1781,
             "src": "219:42:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -464,7 +648,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1737,
+              "id": 1765,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
               "src": "219:4:8",
@@ -475,8 +659,8 @@
             },
             "value": {
               "argumentTypes": null,
-              "hexValue": "312e3034653138",
-              "id": 1738,
+              "hexValue": "312e3032653138",
+              "id": 1766,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -486,19 +670,173 @@
               "src": "254:7:8",
               "subdenomination": null,
               "typeDescriptions": {
-                "typeIdentifier": "t_rational_1040000000000000000_by_1",
-                "typeString": "int_const 1040000000000000000"
+                "typeIdentifier": "t_rational_1020000000000000000_by_1",
+                "typeString": "int_const 1020000000000000000"
               },
-              "value": "1.04e18"
+              "value": "1.02e18"
             },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 1770,
+            "name": "liquidationFee",
+            "nodeType": "VariableDeclaration",
+            "scope": 1781,
+            "src": "270:36:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1768,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "270:4:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "302e3032653138",
+              "id": 1769,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "299:7:8",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_20000000000000000_by_1",
+                "typeString": "int_const 20000000000000000"
+              },
+              "value": "0.02e18"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1779,
+              "nodeType": "Block",
+              "src": "375:54:8",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1777,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 1775,
+                      "name": "liquidationIncentive",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1767,
+                      "src": "387:20:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "+",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 1776,
+                      "name": "liquidationFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1770,
+                      "src": "410:14:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "387:37:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1774,
+                  "id": 1778,
+                  "nodeType": "Return",
+                  "src": "380:44:8"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1780,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "liquidationPenalty",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1771,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "345:2:8"
+            },
+            "returnParameters": {
+              "id": 1774,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1773,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1780,
+                  "src": "369:4:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1772,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "369:4:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "368:6:8"
+            },
+            "scope": 1781,
+            "src": "318:111:8",
+            "stateMutability": "view",
+            "superFunction": 4762,
             "visibility": "public"
           }
         ],
-        "scope": 1741,
-        "src": "30:240:8"
+        "scope": 1782,
+        "src": "30:402:8"
       }
     ],
-    "src": "0:270:8"
+    "src": "0:432:8"
   },
   "compiler": {
     "name": "solc",
@@ -506,7 +844,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-22T23:43:56.703Z",
+  "updatedAt": "2022-03-14T10:55:07.292Z",
   "devdoc": {
     "methods": {}
   },

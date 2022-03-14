@@ -39,14 +39,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IBDeployer.sol",
     "exportedSymbols": {
       "IBDeployer": [
-        4114
+        4035
       ]
     },
-    "id": 4115,
+    "id": 4036,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4104,
+        "id": 4025,
         "literals": [
           "solidity",
           ">=",
@@ -62,9 +62,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4114,
+        "id": 4035,
         "linearizedBaseContracts": [
-          4114
+          4035
         ],
         "name": "IBDeployer",
         "nodeType": "ContractDefinition",
@@ -72,22 +72,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4113,
+            "id": 4034,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deployBorrowable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4109,
+              "id": 4030,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4106,
+                  "id": 4027,
                   "name": "uniswapV2Pair",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "79:21:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -96,7 +96,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4105,
+                    "id": 4026,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "79:7:13",
@@ -111,10 +111,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4108,
+                  "id": 4029,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "102:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -123,7 +123,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 4107,
+                    "id": 4028,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "102:5:13",
@@ -139,15 +139,15 @@
               "src": "78:36:13"
             },
             "returnParameters": {
-              "id": 4112,
+              "id": 4033,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4111,
+                  "id": 4032,
                   "name": "borrowable",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "133:18:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -156,7 +156,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4110,
+                    "id": 4031,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "133:7:13",
@@ -172,14 +172,14 @@
               ],
               "src": "132:20:13"
             },
-            "scope": 4114,
+            "scope": 4035,
             "src": "53:100:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4115,
+        "scope": 4036,
         "src": "28:128:13"
       }
     ],
@@ -189,14 +189,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IBDeployer.sol",
     "exportedSymbols": {
       "IBDeployer": [
-        4114
+        4035
       ]
     },
-    "id": 4115,
+    "id": 4036,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4104,
+        "id": 4025,
         "literals": [
           "solidity",
           ">=",
@@ -212,9 +212,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4114,
+        "id": 4035,
         "linearizedBaseContracts": [
-          4114
+          4035
         ],
         "name": "IBDeployer",
         "nodeType": "ContractDefinition",
@@ -222,22 +222,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4113,
+            "id": 4034,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deployBorrowable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4109,
+              "id": 4030,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4106,
+                  "id": 4027,
                   "name": "uniswapV2Pair",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "79:21:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -246,7 +246,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4105,
+                    "id": 4026,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "79:7:13",
@@ -261,10 +261,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4108,
+                  "id": 4029,
                   "name": "index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "102:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -273,7 +273,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 4107,
+                    "id": 4028,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "102:5:13",
@@ -289,15 +289,15 @@
               "src": "78:36:13"
             },
             "returnParameters": {
-              "id": 4112,
+              "id": 4033,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4111,
+                  "id": 4032,
                   "name": "borrowable",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4113,
+                  "scope": 4034,
                   "src": "133:18:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -306,7 +306,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4110,
+                    "id": 4031,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "133:7:13",
@@ -322,14 +322,14 @@
               ],
               "src": "132:20:13"
             },
-            "scope": 4114,
+            "scope": 4035,
             "src": "53:100:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4115,
+        "scope": 4036,
         "src": "28:128:13"
       }
     ],
@@ -341,7 +341,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-22T23:43:56.750Z",
+  "updatedAt": "2022-03-14T10:55:07.406Z",
   "devdoc": {
     "methods": {}
   },

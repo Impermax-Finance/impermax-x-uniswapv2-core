@@ -34,14 +34,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/ICDeployer.sol",
     "exportedSymbols": {
       "ICDeployer": [
-        4615
+        4536
       ]
     },
-    "id": 4616,
+    "id": 4537,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4607,
+        "id": 4528,
         "literals": [
           "solidity",
           ">=",
@@ -57,9 +57,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4615,
+        "id": 4536,
         "linearizedBaseContracts": [
-          4615
+          4536
         ],
         "name": "ICDeployer",
         "nodeType": "ContractDefinition",
@@ -67,22 +67,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4614,
+            "id": 4535,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deployCollateral",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4610,
+              "id": 4531,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4609,
+                  "id": 4530,
                   "name": "uniswapV2Pair",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4614,
+                  "scope": 4535,
                   "src": "79:21:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -91,7 +91,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4608,
+                    "id": 4529,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "79:7:16",
@@ -108,15 +108,15 @@
               "src": "78:23:16"
             },
             "returnParameters": {
-              "id": 4613,
+              "id": 4534,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4612,
+                  "id": 4533,
                   "name": "collateral",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4614,
+                  "scope": 4535,
                   "src": "120:18:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -125,7 +125,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4611,
+                    "id": 4532,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "120:7:16",
@@ -141,14 +141,14 @@
               ],
               "src": "119:20:16"
             },
-            "scope": 4615,
+            "scope": 4536,
             "src": "53:87:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4616,
+        "scope": 4537,
         "src": "28:115:16"
       }
     ],
@@ -158,14 +158,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/ICDeployer.sol",
     "exportedSymbols": {
       "ICDeployer": [
-        4615
+        4536
       ]
     },
-    "id": 4616,
+    "id": 4537,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4607,
+        "id": 4528,
         "literals": [
           "solidity",
           ">=",
@@ -181,9 +181,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4615,
+        "id": 4536,
         "linearizedBaseContracts": [
-          4615
+          4536
         ],
         "name": "ICDeployer",
         "nodeType": "ContractDefinition",
@@ -191,22 +191,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4614,
+            "id": 4535,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deployCollateral",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4610,
+              "id": 4531,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4609,
+                  "id": 4530,
                   "name": "uniswapV2Pair",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4614,
+                  "scope": 4535,
                   "src": "79:21:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -215,7 +215,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4608,
+                    "id": 4529,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "79:7:16",
@@ -232,15 +232,15 @@
               "src": "78:23:16"
             },
             "returnParameters": {
-              "id": 4613,
+              "id": 4534,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4612,
+                  "id": 4533,
                   "name": "collateral",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4614,
+                  "scope": 4535,
                   "src": "120:18:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -249,7 +249,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4611,
+                    "id": 4532,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "120:7:16",
@@ -265,14 +265,14 @@
               ],
               "src": "119:20:16"
             },
-            "scope": 4615,
+            "scope": 4536,
             "src": "53:87:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4616,
+        "scope": 4537,
         "src": "28:115:16"
       }
     ],
@@ -284,7 +284,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-22T23:43:56.757Z",
+  "updatedAt": "2022-03-14T10:55:07.430Z",
   "devdoc": {
     "methods": {}
   },

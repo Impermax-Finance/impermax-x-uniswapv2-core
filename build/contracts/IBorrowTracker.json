@@ -38,14 +38,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IBorrowTracker.sol",
     "exportedSymbols": {
       "IBorrowTracker": [
-        4126
+        4047
       ]
     },
-    "id": 4127,
+    "id": 4048,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4116,
+        "id": 4037,
         "literals": [
           "solidity",
           ">=",
@@ -61,9 +61,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4126,
+        "id": 4047,
         "linearizedBaseContracts": [
-          4126
+          4047
         ],
         "name": "IBorrowTracker",
         "nodeType": "ContractDefinition",
@@ -71,22 +71,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4125,
+            "id": 4046,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "trackBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4123,
+              "id": 4044,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4118,
+                  "id": 4039,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "78:16:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -95,7 +95,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4117,
+                    "id": 4038,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "78:7:14",
@@ -110,10 +110,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4120,
+                  "id": 4041,
                   "name": "borrowBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "96:18:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -122,7 +122,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4119,
+                    "id": 4040,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "96:4:14",
@@ -136,10 +136,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4122,
+                  "id": 4043,
                   "name": "borrowIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "116:16:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -148,7 +148,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4121,
+                    "id": 4042,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "116:4:14",
@@ -164,19 +164,19 @@
               "src": "77:56:14"
             },
             "returnParameters": {
-              "id": 4124,
+              "id": 4045,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "142:0:14"
             },
-            "scope": 4126,
+            "scope": 4047,
             "src": "57:86:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4127,
+        "scope": 4048,
         "src": "28:118:14"
       }
     ],
@@ -186,14 +186,14 @@
     "absolutePath": "/C/Users/simor/Desktop/impermax-x-uniswapv2-core/contracts/interfaces/IBorrowTracker.sol",
     "exportedSymbols": {
       "IBorrowTracker": [
-        4126
+        4047
       ]
     },
-    "id": 4127,
+    "id": 4048,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4116,
+        "id": 4037,
         "literals": [
           "solidity",
           ">=",
@@ -209,9 +209,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4126,
+        "id": 4047,
         "linearizedBaseContracts": [
-          4126
+          4047
         ],
         "name": "IBorrowTracker",
         "nodeType": "ContractDefinition",
@@ -219,22 +219,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4125,
+            "id": 4046,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "trackBorrow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4123,
+              "id": 4044,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4118,
+                  "id": 4039,
                   "name": "borrower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "78:16:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -243,7 +243,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4117,
+                    "id": 4038,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "78:7:14",
@@ -258,10 +258,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4120,
+                  "id": 4041,
                   "name": "borrowBalance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "96:18:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -270,7 +270,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4119,
+                    "id": 4040,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "96:4:14",
@@ -284,10 +284,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 4122,
+                  "id": 4043,
                   "name": "borrowIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4125,
+                  "scope": 4046,
                   "src": "116:16:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -296,7 +296,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4121,
+                    "id": 4042,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "116:4:14",
@@ -312,19 +312,19 @@
               "src": "77:56:14"
             },
             "returnParameters": {
-              "id": 4124,
+              "id": 4045,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "142:0:14"
             },
-            "scope": 4126,
+            "scope": 4047,
             "src": "57:86:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 4127,
+        "scope": 4048,
         "src": "28:118:14"
       }
     ],
@@ -336,7 +336,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-22T23:43:56.751Z",
+  "updatedAt": "2022-03-14T10:55:07.409Z",
   "devdoc": {
     "methods": {}
   },
