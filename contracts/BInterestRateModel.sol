@@ -8,7 +8,7 @@ contract BInterestRateModel is PoolToken, BStorage {
 	// When utilization is 100% borrowRate is kinkBorrowRate * KINK_MULTIPLIER
 	// kinkBorrowRate relative adjustment per second belongs to [1-adjustSpeed, 1+adjustSpeed*(KINK_MULTIPLIER-1)]
 	uint public constant KINK_MULTIPLIER = 2;
-	uint public constant KINK_BORROW_RATE_MAX = 317.097920e9; //1000% per year
+	uint public constant KINK_BORROW_RATE_MAX = 792.744800e9; //2500% per year
 	uint public constant KINK_BORROW_RATE_MIN = 0.31709792e9; //1% per year
 
 	event AccrueInterest(uint interestAccumulated, uint borrowIndex, uint totalBorrows);

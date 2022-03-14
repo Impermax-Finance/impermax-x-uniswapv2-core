@@ -11,9 +11,11 @@ contract CSetter is PoolToken, CStorage {
 	uint public constant SAFETY_MARGIN_SQRT_MAX = 1.58113884e18; //safetyMargin: 250%
 	uint public constant LIQUIDATION_INCENTIVE_MIN = 1.00e18; //100%
 	uint public constant LIQUIDATION_INCENTIVE_MAX = 1.05e18; //105%
+	uint public constant LIQUIDATION_FEE_MAX = 0.08e18; //8%
 
 	event NewSafetyMargin(uint newSafetyMarginSqrt);
 	event NewLiquidationIncentive(uint newLiquidationIncentive);
+	event NewLiquidationFee(uint newLiquidationFee);
 	
 	// called once by the factory at the time of deployment
 	function _initialize (
@@ -41,6 +43,12 @@ contract CSetter is PoolToken, CStorage {
 		_checkSetting(newLiquidationIncentive, LIQUIDATION_INCENTIVE_MIN, LIQUIDATION_INCENTIVE_MAX);
 		liquidationIncentive = newLiquidationIncentive;
 		emit NewLiquidationIncentive(newLiquidationIncentive);
+	}
+
+	function _setLiquidationFee(uint newLiquidationFee) external nonReentrant {
+		_checkSetting(newLiquidationFee, 0, LIQUIDATION_FEE_MAX);
+		liquidationFee = newLiquidationFee;
+		emit NewLiquidationFee(newLiquidationFee);
 	}
 	
 	function _checkSetting(uint parameter, uint min, uint max) internal view {

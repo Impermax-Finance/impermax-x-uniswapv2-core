@@ -48,7 +48,10 @@ interface ICollateral {
 	function simpleUniswapOracle() external view returns (address);
 	function safetyMarginSqrt() external view returns (uint);
 	function liquidationIncentive() external view returns (uint);
+	function liquidationFee() external view returns (uint);
+	function liquidationPenalty() external view returns (uint);
 	
+	function getTwapPrice112x112() external returns(uint224 twapPrice112x112);
 	function getPrices() external returns (uint price0, uint price1);
 	function tokensUnlocked(address from, uint value) external returns (bool);
 	function accountLiquidityAmounts(address account, uint amount0, uint amount1) external returns (uint liquidity, uint shortfall);
@@ -61,11 +64,13 @@ interface ICollateral {
 	
 	event NewSafetyMargin(uint newSafetyMarginSqrt);
 	event NewLiquidationIncentive(uint newLiquidationIncentive);
+	event NewLiquidationFee(uint newLiquidationFee);
 
 	function SAFETY_MARGIN_SQRT_MIN() external pure returns (uint);
 	function SAFETY_MARGIN_SQRT_MAX() external pure returns (uint);
 	function LIQUIDATION_INCENTIVE_MIN() external pure returns (uint);
 	function LIQUIDATION_INCENTIVE_MAX() external pure returns (uint);
+	function LIQUIDATION_FEE_MAX() external pure returns (uint);
 	
 	function _initialize (
 		string calldata _name, 
@@ -76,4 +81,5 @@ interface ICollateral {
 	) external;
 	function _setSafetyMarginSqrt(uint newSafetyMarginSqrt) external;
 	function _setLiquidationIncentive(uint newLiquidationIncentive) external;
+	function _setLiquidationFee(uint newLiquidationFee) external;
 }

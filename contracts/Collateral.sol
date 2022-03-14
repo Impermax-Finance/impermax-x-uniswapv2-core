@@ -13,11 +13,15 @@ import "./libraries/UQ112x112.sol";
 import "./libraries/Math.sol";
 
 contract Collateral is ICollateral, PoolToken, CStorage, CSetter {
-    using UQ112x112 for uint224;
+	using UQ112x112 for uint224;
 	
 	constructor() public {}
 	
 	/*** Collateralization Model ***/
+	
+	function getTwapPrice112x112() public returns(uint224 twapPrice112x112) {
+		(twapPrice112x112,) = ISimpleUniswapOracle(simpleUniswapOracle).getResult(underlying);
+	}
 
 	// returns the prices of borrowable0's and borrowable1's underlyings with collateral's underlying as denom
 	function getPrices() public returns (uint price0, uint price1) {
@@ -54,7 +58,7 @@ contract Collateral is ICollateral, PoolToken, CStorage, CSetter {
 		if(a < b) (a, b) = (b, a);
 		a = a.mul(_safetyMarginSqrt).div(1e18);
 		b = b.mul(1e18).div(_safetyMarginSqrt);
-		uint collateralNeeded = a.add(b).mul(liquidationIncentive).div(1e18);		
+		uint collateralNeeded = a.add(b).mul(liquidationPenalty()).div(1e18);		
 
 		if(amountCollateral >= collateralNeeded){
 			return (amountCollateral - collateralNeeded, 0);
@@ -115,11 +119,20 @@ contract Collateral is ICollateral, PoolToken, CStorage, CSetter {
 		if (msg.sender == borrowable0) (price, ) = getPrices();
 		else  (, price) = getPrices();
 		
-		seizeTokens = repayAmount.mul(liquidationIncentive).div(1e18).mul(price).div( exchangeRate() );
+		uint collateralEquivalent = repayAmount.mul(price).div( exchangeRate() );	
 		
+		seizeTokens = collateralEquivalent.mul(liquidationIncentive).div(1e18);		
 		balanceOf[borrower] = balanceOf[borrower].sub(seizeTokens, "Impermax: LIQUIDATING_TOO_MUCH");
 		balanceOf[liquidator] = balanceOf[liquidator].add(seizeTokens);
 		emit Transfer(borrower, liquidator, seizeTokens);
+		
+		if (liquidationFee > 0) {
+			uint seizeFee = collateralEquivalent.mul(liquidationFee).div(1e18);			
+			address reservesManager = IFactory(factory).reservesManager();
+			balanceOf[borrower] = balanceOf[borrower].sub(seizeFee, "Impermax: LIQUIDATING_TOO_MUCH");
+			balanceOf[reservesManager] = balanceOf[reservesManager].add(seizeFee);
+			emit Transfer(borrower, reservesManager, seizeFee);
+		}
 	}
 
 	// this low-level function should be called from another contract
